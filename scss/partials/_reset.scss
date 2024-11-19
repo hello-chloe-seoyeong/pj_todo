@@ -1,0 +1,92 @@
+@use "./variables";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+body,
+button,
+dd,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+select,
+table,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
+  font-family: variables.$font-family;
+}
+
+html {
+  height: 100%;
+  font-size: 14px;
+}
+
+button,
+input,
+select,
+textarea {
+  border-radius: 0;
+  border: none;
+  background: 0 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-text-size-adjust: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body {
+  font-size: variables.$font-size;
+  width: 100vw;
+  height: 100vh;
+}
+
+.a11y-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
