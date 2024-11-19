@@ -197,7 +197,12 @@ header i {
   padding: 0 1rem;
   font-size: 1rem;
 }
-.todo__list li .btn-delete i {
+.todo__list li .btn-delete-todo {
+  display: block;
+  width: 15px;
+  height: 15px;
+}
+.todo__list li .btn-delete-todo i {
   display: inline-block;
   width: 12px;
   height: 12px;
