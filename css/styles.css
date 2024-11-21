@@ -175,8 +175,9 @@ header i {
 .todo__form input[type=text] {
   margin-left: 1rem;
   width: 100%;
+  padding-right: 0.5rem;
 }
-.todo__form .btn-add-todo i {
+.todo__form .btn-todo-add i {
   display: inline-block;
   width: 12px;
   height: 12px;
@@ -190,17 +191,20 @@ header i {
   font-size: 0.75rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: top;
 }
 .todo__list li label {
   flex: 1;
   padding: 0 1rem;
   font-size: 1rem;
+  word-break: break-all;
+  padding-top: 4px;
 }
 .todo__list li .btn-delete-todo {
   display: block;
   width: 15px;
   height: 15px;
+  padding-top: 4px;
 }
 .todo__list li .btn-delete-todo i {
   display: inline-block;
@@ -208,6 +212,9 @@ header i {
   height: 12px;
   background: url(./../../images/icon-cross.svg) no-repeat center;
   background-size: 12px 12px;
+}
+.todo__list li.hide {
+  display: none;
 }
 .todo__footer, .todo__filter {
   display: flex;
@@ -227,7 +234,7 @@ header i {
   font-size: 0.75rem;
   color: hsl(236, 9%, 61%);
 }
-.todo__footer .btn-clear-complete {
+.todo__footer .btn-todo-clear {
   color: hsl(236, 9%, 61%);
 }
 .todo .guide-text {

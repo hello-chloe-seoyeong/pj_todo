@@ -4,7 +4,11 @@ const todoListsCount = document.querySelector(".todo__count__num");
 const todoForm = document.querySelector(".todo__form");
 const todoLists = document.querySelector(".todo__list ul");
 const todoInput = document.querySelector("#todo__input");
-const todoSubmit = document.querySelector(".btn-add-todo");
+const todoSubmit = document.querySelector(".btn-todo-add");
+const btnTodoClear = document.querySelector(".btn-todo-clear");
+const filterAll = document.querySelector("#radio-all");
+const filterActive = document.querySelector("#radio-active");
+const filterCompleted = document.querySelector("#radio-complete");
 
 const TODO_LOCALSTORAGE_KEY = "todos";
 
@@ -98,20 +102,72 @@ function paintTodo(todoObj) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  const newTodo = todoInput.value;
-  todoInput.value = "";
-  const newTodoObj = {
-    text: newTodo,
-    id: Date.now(),
-    completed: false
+  if(todoInput.value !== "") {
+    const newTodo = todoInput.value;
+    todoInput.value = "";
+    const newTodoObj = {
+      text: newTodo,
+      id: Date.now(),
+      completed: false
+    }
+    todos.push(newTodoObj);
+    paintTodo(newTodoObj);
+    saveTodos();
+  } else {
+    console.log("You need to write down something...")
   }
-  todos.push(newTodoObj);
-  paintTodo(newTodoObj);
-  saveTodos();
+}
+
+function clearTodoList() {
+
+  // localStorage.clear();
+  // todos = [];
+  const todoLis = Array.from(todoLists.children);
+
+  todoLis.forEach(todoLi => {
+    if(todoLi.children[0].checked === true) {
+      todoLi.remove();
+    }
+  })
+
+  todos = todos.filter(todo => todo.completed !== true);
+
+  saveTodos(todos);
+  countingTodoLists();
+}
+
+function handleFilter(event) {
+  const todoLis = Array.from(todoLists.children);
+
+  if(event.target.id === "radio-all") {
+    todoLis.forEach(todoLi => {
+      todoLi.classList.remove("hide");
+      // if(todoLi.classList.contains("hide")) {
+      // }
+    })
+  } else if(event.target.id === "radio-active") {
+    todoLis.forEach(todoLi => {
+      todoLi.classList.remove("hide");
+      if(todoLi.children[0].checked === true) {
+        todoLi.classList.add("hide");
+      }
+    })
+  } else if(event.target.id === "radio-complete") {
+    todoLis.forEach(todoLi => {
+      todoLi.classList.remove("hide");
+      if(todoLi.children[0].checked !== true) {
+        todoLi.classList.add("hide");
+      }
+    })
+  }
 }
 
 modeChange.addEventListener("click", handleMode);
 todoForm.addEventListener("submit", handleSubmit);
+btnTodoClear.addEventListener("click", clearTodoList);
+filterAll.addEventListener("change", handleFilter);
+filterActive.addEventListener("change", handleFilter);
+filterCompleted.addEventListener("change", handleFilter);
 
 const savedTodoLists = getLocalTodo();
 
@@ -120,6 +176,8 @@ if(savedTodoLists) {
   todos = savedTodoLists;
 
   todos.forEach(paintTodo);
+  countingTodoLists();
+} else {
   countingTodoLists();
 }
 

@@ -52,8 +52,9 @@
     input[type="text"] {
       margin-left: 1rem;
       width: 100%;
+      padding-right: .5rem;
     }
-    .btn-add-todo {
+    .btn-todo-add {
       i {
         display: inline-block;
         width: 12px;
@@ -71,17 +72,19 @@
       font-size: 0.75rem;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: top;
       label {
         flex: 1;
         padding: 0 1rem;
         font-size: 1rem;
+        word-break: break-all;
+        padding-top: 4px;
       }
       .btn-delete-todo {
         display: block;
         width: 15px;
         height: 15px;
-
+        padding-top: 4px;
         i {
           display: inline-block;
           width: 12px;
@@ -89,6 +92,9 @@
           background: url(./../../images/icon-cross.svg) no-repeat center;
           background-size: 12px 12px;
         }
+      }
+      &.hide {
+        display: none;
       }
     }
   }
@@ -112,7 +118,7 @@
     justify-content: space-between;
     font-size: 0.75rem;
     color: variables.$light_d_grayish_blue;
-    .btn-clear-complete {
+    .btn-todo-clear {
       color: variables.$light_d_grayish_blue;
     }
   }
