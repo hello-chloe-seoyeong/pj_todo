@@ -45,6 +45,26 @@
     margin-bottom: 1rem;
     border-radius: 6px;
     transition: all .5s ease-in-out;
+    box-shadow: 1px 1px 11px rgba(0,0,0,.3);
+  }
+  &__form-wrap {
+    position: relative;
+    .todo__form-message {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      padding: 6px 21px;
+      border-radius: 20px;
+      position: absolute;
+      top: 7px;
+      right: 36px;
+      opacity: 0;
+      transform: scale(0);
+      transition: all .5s ease-in-out;
+      &.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
   }
   &__form {
     padding: 1rem;

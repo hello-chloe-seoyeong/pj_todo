@@ -2,6 +2,7 @@ const modeChange = document.querySelector(".btn-mode");
 const container = document.querySelector(".container");
 const todoListsCount = document.querySelector(".todo__count__num");
 const todoForm = document.querySelector(".todo__form");
+const todoFormMsg = document.querySelector(".todo__form-message")
 const todoLists = document.querySelector(".todo__list ul");
 const todoInput = document.querySelector("#todo__input");
 const todoSubmit = document.querySelector(".btn-todo-add");
@@ -54,11 +55,7 @@ function handleTodoCheck(event) {
   const todoID = event.target.id - 1;
   todos.forEach(todo => {
     if(todo.id === todoID) {
-      if(todo.completed === true) {
-        todo.completed = false;
-      } else {
-        todo.completed = true;
-      }
+      todo.completed ? todo.completed = false : todo.completed = true;
     }
   })
   saveTodos();
@@ -67,12 +64,20 @@ function handleTodoCheck(event) {
 function paintTodo(todoObj) {
   const li = document.createElement("li");
   li.id = todoObj.id;
+  li.setAttribute("draggable", "true");
   const todoId = todoObj.id + 1;
   const todoText = todoObj.text;
   // li.innerHTML = `
   //   <input type="checkbox" name="todo" id=${todoId} />
   //   <label for=${todoId}>${todoText}</label>
   // `;
+
+  li.addEventListener("dragstart", (event) => {
+    event.target.classList.add("dragging");
+  });
+  li.addEventListener("dragend", (event) => {
+    event.target.classList.remove("dragging");
+  })
 
   const button = document.createElement("button");
   const todoCheck = document.createElement("input");
@@ -114,12 +119,15 @@ function handleSubmit(event) {
     paintTodo(newTodoObj);
     saveTodos();
   } else {
+    todoFormMsg.classList.add("show");
+    setTimeout(() => {
+      todoFormMsg.classList.remove("show");
+    }, 1500)
     console.log("You need to write down something...")
   }
 }
 
 function clearTodoList() {
-
   // localStorage.clear();
   // todos = [];
   const todoLis = Array.from(todoLists.children);
@@ -132,7 +140,7 @@ function clearTodoList() {
 
   todos = todos.filter(todo => todo.completed !== true);
 
-  saveTodos(todos);
+  saveTodos();
   countingTodoLists();
 }
 
