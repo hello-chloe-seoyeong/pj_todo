@@ -48,7 +48,7 @@ function deleteTodo(event) {
   const targetLi = current.parentElement;
   targetLi.remove();
   todos = todos.filter((todo) => todo.id !== parseInt(targetLi.id));
-  saveTodos(todos);
+  saveTodos();
 }
 
 function handleTodoCheck(event) {
@@ -103,7 +103,6 @@ function paintTodo(todoObj) {
 
   todoLists.append(li);
 }
-
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -189,3 +188,49 @@ if(savedTodoLists) {
   countingTodoLists();
 }
 
+todoLists.addEventListener("dragover", e => {
+  e.preventDefault();
+  const afterElement = getDragAfterElement(todoLists, e.clientY);
+  const draggable = document.querySelector(".dragging");
+  const dragItemId = (element) => {
+    if(element.id === Number(draggable.id)) {
+      return draggable.id
+    }
+  }
+  // const dragItemIndex = todos.at(dragItemId);
+  // const currentDragItem = todos.slice(dragItemIndex, 1);
+
+  if (afterElement === undefined) {
+    todoLists.appendChild(draggable);
+    // todos.push(dragItemId);
+  } else {
+    todoLists.insertBefore(draggable, afterElement);
+    // todos.push(dragItemId);
+  }
+});
+
+function getDragAfterElement(todoLists, y) {
+  const draggableElements = [
+    ...todoLists.querySelectorAll("li:not(.dragging)"),
+  ];
+
+  let closestElement = null;  // 가장 가까운 요소를 저장할 변수
+  let closestOffset = Number.NEGATIVE_INFINITY;  // 가장 가까운 요소의 offset (초기값은 아주 작은 값)
+
+  // 각 draggable 요소를 순회하면서 가장 가까운 요소를 찾음
+  for (let i = 0; i < draggableElements.length; i++) {
+    const child = draggableElements[i];
+    const box = child.getBoundingClientRect();  // 현재 요소의 위치와 크기 정보
+
+    // 드래그하려는 위치와 요소의 중앙 위치 차이를 계산
+    const offset = y - box.top - box.height / 2;
+
+    // offset이 0보다 작은 값이고, 이전에 찾은 가장 가까운 요소보다 더 가까운 위치라면
+    if (offset < 0 && offset > closestOffset) {
+      closestOffset = offset;  // 가장 가까운 offset 값 갱신
+      closestElement = child;  // 가장 가까운 요소 갱신
+    }
+  }
+
+  return closestElement;  // 가장 가까운 요소를 반환
+}

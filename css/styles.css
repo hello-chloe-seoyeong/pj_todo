@@ -197,6 +197,9 @@ header i {
   width: 100%;
   padding-right: 0.5rem;
 }
+.todo__form input[type=text]:-webkit-autofill {
+  background-color: #fff;
+}
 .todo__form .btn-todo-add i {
   display: inline-block;
   width: 12px;
@@ -211,7 +214,7 @@ header i {
   font-size: 0.75rem;
   display: flex;
   justify-content: space-between;
-  align-items: top;
+  align-items: flex-start;
 }
 .todo__list li[draggable=true] {
   cursor: pointer;
@@ -317,8 +320,20 @@ input[type=checkbox]:checked ~ label {
   background-color: hsl(235, 24%, 19%);
   color: #fff;
 }
+.dark .todo__form input[type=text] {
+  color: #fff;
+}
+.dark .todo__form input[type=text]:-webkit-autofill {
+  box-shadow: hsl(235, 24%, 19%);
+}
+.dark .todo__form .btn-todo-add i {
+  background-image: url(./../../images/icon-cross-dark.svg);
+}
 .dark .todo__list li {
   border-color: hsl(233, 14%, 35%);
+}
+.dark .todo__list li .btn-delete-todo i {
+  background-image: url(./../../images/icon-cross-dark.svg);
 }
 
 /*# sourceMappingURL=styles.css.map */

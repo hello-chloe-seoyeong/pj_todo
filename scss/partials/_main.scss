@@ -73,6 +73,9 @@
       margin-left: 1rem;
       width: 100%;
       padding-right: .5rem;
+      &:-webkit-autofill {
+        background-color: #fff;
+      }
     }
     .btn-todo-add {
       i {
@@ -92,7 +95,10 @@
       font-size: 0.75rem;
       display: flex;
       justify-content: space-between;
-      align-items: top;
+      align-items: flex-start;
+      &[draggable="true"] {
+        cursor: pointer;
+      }
       label {
         flex: 1;
         padding: 0 1rem;
@@ -207,9 +213,27 @@ input[type="checkbox"] {
       background-color: variables.$dark_vd_desaturated_blue;
       color: #fff;
     }
+    &__form {
+      input[type="text"] {
+        color: #fff;
+        &:-webkit-autofill {
+          box-shadow: hsl(235, 24%, 19%);
+        }
+      }
+      .btn-todo-add {
+        i {
+          background-image: url(./../../images/icon-cross-dark.svg);
+        }
+      }
+    }
     &__list {
       li {
         border-color: variables.$dark_vd_grayish_blue;
+        .btn-delete-todo {
+          i {
+            background-image: url(./../../images/icon-cross-dark.svg);
+          }
+        }
       }
     }
   }
