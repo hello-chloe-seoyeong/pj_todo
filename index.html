@@ -37,55 +37,34 @@
           </button>
         </header>
         <div class="main todo">
-          <form class="todo__form">
-            <input type="checkbox" name="" id="" disabled />
-            <input type="text" placeholder="Create a new todo..." id="todo__input" />
-            <button class="btn-add-todo">
-              <i></i>
-              <span class="a11y-hidden">Add</span>
-            </button>
-          </form>
+          <div class="todo__form-wrap">
+            <form class="todo__form">
+              <input type="checkbox" name="" id="" disabled />
+              <input type="text" placeholder="Create a new todo..." id="todo__input" />
+              <button class="btn-todo-add">
+                <i></i>
+                <span class="a11y-hidden">Add</span>
+              </button>
+            </form>
+            <p class="todo__form-message">Write Something To Do 🤨</p>
+          </div>
           <div class="todo__list">
             <ul>
-              <li>
+              <!-- <li>
                 <input type="checkbox" name="todo" id="todo1" />
                 <label for="todo1">Complete online Javascript course</label>
-                <button class="btn-delete">
+                <button class="btn-delete-todo">
                   <i></i>
                   <span class="a11y-hidden">delete</span>
                 </button>
-              </li>
-              <li>
-                <input type="checkbox" name="todo" id="todo2" />
-                <label for="todo2">Jog around the park 3x</label>
-                <button class="btn-delete">
-                  <i></i>
-                  <span class="a11y-hidden">delete</span>
-                </button>
-              </li>
-              <li>
-                <input type="checkbox" name="todo" id="todo3" />
-                <label for="todo3">Read for 1 hour</label>
-                <button class="btn-delete">
-                  <i></i>
-                  <span class="a11y-hidden">delete</span>
-                </button>
-              </li>
-              <li>
-                <input type="checkbox" name="todo" id="todo4" />
-                <label for="todo4">Pick up groceries</label>
-                <button class="btn-delete">
-                  <i></i>
-                  <span class="a11y-hidden">delete</span>
-                </button>
-              </li>
+              </li> -->
             </ul>
             <div class="todo__footer">
               <p class="todo__count">
-                <span class="todo__count__num">2</span>
+                <span class="todo__count__num"></span>
                 <span>items left</span>
               </p>
-              <button class="btn-clear-complete">Clear Completed</button>
+              <button class="btn-todo-clear">Clear Completed</button>
             </div>
           </div>
           <div class="todo__filter">

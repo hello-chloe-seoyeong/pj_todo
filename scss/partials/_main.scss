@@ -45,6 +45,26 @@
     margin-bottom: 1rem;
     border-radius: 6px;
     transition: all .5s ease-in-out;
+    box-shadow: 1px 1px 11px rgba(0,0,0,.3);
+  }
+  &__form-wrap {
+    position: relative;
+    .todo__form-message {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      padding: 6px 21px;
+      border-radius: 20px;
+      position: absolute;
+      top: 7px;
+      right: 36px;
+      opacity: 0;
+      transform: scale(0);
+      transition: all .5s ease-in-out;
+      &.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
   }
   &__form {
     padding: 1rem;
@@ -52,8 +72,12 @@
     input[type="text"] {
       margin-left: 1rem;
       width: 100%;
+      padding-right: .5rem;
+      &:-webkit-autofill {
+        background-color: #fff;
+      }
     }
-    .btn-add-todo {
+    .btn-todo-add {
       i {
         display: inline-block;
         width: 12px;
@@ -71,13 +95,22 @@
       font-size: 0.75rem;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
+      &[draggable="true"] {
+        cursor: pointer;
+      }
       label {
         flex: 1;
         padding: 0 1rem;
         font-size: 1rem;
+        word-break: break-all;
+        padding-top: 4px;
       }
-      .btn-delete {
+      .btn-delete-todo {
+        display: block;
+        width: 15px;
+        height: 15px;
+        padding-top: 4px;
         i {
           display: inline-block;
           width: 12px;
@@ -85,6 +118,9 @@
           background: url(./../../images/icon-cross.svg) no-repeat center;
           background-size: 12px 12px;
         }
+      }
+      &.hide {
+        display: none;
       }
     }
   }
@@ -108,7 +144,7 @@
     justify-content: space-between;
     font-size: 0.75rem;
     color: variables.$light_d_grayish_blue;
-    .btn-clear-complete {
+    .btn-todo-clear {
       color: variables.$light_d_grayish_blue;
     }
   }
@@ -177,9 +213,27 @@ input[type="checkbox"] {
       background-color: variables.$dark_vd_desaturated_blue;
       color: #fff;
     }
+    &__form {
+      input[type="text"] {
+        color: #fff;
+        &:-webkit-autofill {
+          box-shadow: hsl(235, 24%, 19%);
+        }
+      }
+      .btn-todo-add {
+        i {
+          background-image: url(./../../images/icon-cross-dark.svg);
+        }
+      }
+    }
     &__list {
       li {
         border-color: variables.$dark_vd_grayish_blue;
+        .btn-delete-todo {
+          i {
+            background-image: url(./../../images/icon-cross-dark.svg);
+          }
+        }
       }
     }
   }
